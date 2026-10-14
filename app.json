@@ -3,12 +3,23 @@
     "name": "doorcat",
     "slug": "doorcat",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "scheme": "doorcat",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "studio.brownish.doorcat",
+      "supportsTablet": true,
+      "requireFullScreen": true,
+      "entitlements": {
+        "com.apple.developer.usernotifications.time-sensitive": true
+      },
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        },
+        "NSLocalNetworkUsageDescription": "Doorcat connects to the intercom controller on your home network."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +36,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-notifications",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "PORTRAIT_UP"
+        }
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
